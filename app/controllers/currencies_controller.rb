@@ -41,16 +41,12 @@ def conversion
 
   @conversion_data = open("https://api.exchangerate.host/convert?from=" + @from_symbol+"&to="+@to_symbol).read
 
-
   @parsed_data = JSON.parse(@conversion_data)
 
   @conversion_hash = @parsed_data.fetch("info")
 
-  @array_of_conversions = @conversion_hash.keys
 
-  @conversion_amount = params.fetch("rate")
-
-
+  @conversion_amount = @conversion_hash.fetch("rate")
 
   render({ :template => "currency_templates/conversion.html.erb"})
   
